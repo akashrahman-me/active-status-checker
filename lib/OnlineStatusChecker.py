@@ -19,12 +19,12 @@ class OnlineStatusChecker:
         chrome_options.add_argument("--window-size=1366,768")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-blink-features=AutomationControlled")  # To avoid blink detection
-        chrome_options.add_argument("--disable-infobars")
-        chrome_options.add_argument("--disable-extensions")
-        chrome_options.add_argument("--disable-dev-shm-usage")
+        # chrome_options.add_argument("--disable-infobars")
+        # chrome_options.add_argument("--disable-extensions")
+        # chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--headless=new")
-        chrome_options.add_argument("--remote-debugging-port=9222")
-        chrome_options.add_argument("--disable-web-security")
+        # chrome_options.add_argument("--remote-debugging-port=9222")
+        # chrome_options.add_argument("--disable-web-security")
         chrome_options.add_argument(
             "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 
@@ -72,8 +72,8 @@ class OnlineStatusChecker:
 
 # Usage
 if __name__ == "__main__":
-    ACCOUNT_PATH = "https://www.fiverr.com/username"  # Replace with actual URL
-    NICKNAME = "your_nickname"  # Replace with actual nickname
+    ACCOUNT_PATH = "https://www.fiverr.com/akshrahman_me"  # Replace with actual URL
+    NICKNAME = "Md Hasen Ali"  # Replace with actual nickname
 
     checker = OnlineStatusChecker(account_path=ACCOUNT_PATH, nickname=NICKNAME)
     is_online = checker.check_online_status()

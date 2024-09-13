@@ -3,7 +3,7 @@ from PIL import Image, ImageTk
 import threading
 
 
-def notify_interface(icon: str, title: str, message: str, timeout: int = (60 * 5)):
+def notify_interface(icon: str, title: str, message: str, timeout: int):
     # Create root window and hide it
     root = tk.Tk()
     root.withdraw()
@@ -85,7 +85,7 @@ def notify_interface(icon: str, title: str, message: str, timeout: int = (60 * 5
     # Keep the window alive
     root.mainloop()
 
-def notify(icon: str, title: str, message: str, timeout: int = (60 * 5)):
+def notify(icon: str, title: str, message: str, timeout: int = (60 * 3)):
     def init_notify():
         notify_interface(icon, title, message, timeout)
     threading.Thread(target=init_notify).start()
