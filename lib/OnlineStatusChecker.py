@@ -46,12 +46,19 @@ class OnlineStatusChecker:
                         }})?.length > 0
             """)
 
-        if not is_online:
-            dirname = os.path.abspath(__file__)
-            dirname = os.path.dirname(dirname)
+        dirname = os.path.abspath(__file__)
+        dirname = os.path.dirname(dirname)
+
+        if 'human' in self.driver.title:
+            notify(icon=f"{dirname}\\..\\images\\robot.png",
+                   title="Throw robot!",
+                   message="Human touch is required to retrieve status!")
+
+        elif self.nickname in self.driver.title and not is_online:
             notify( icon=f"{dirname}\\..\\images\\fiverr.png",
                     title="Not Online!",
                     message="Fiverr account isn't online, take action!")
+
 
         # Take a screenshot
         self.take_screenshot()
@@ -70,12 +77,13 @@ class OnlineStatusChecker:
         self.driver.save_screenshot(f"{dirname}\\..\\history\\screenshot__{suffix}.png")
 
 
+
 # Usage
 if __name__ == "__main__":
     ACCOUNT_PATH = "https://www.fiverr.com/akshrahman_me"  # Replace with actual URL
     NICKNAME = "Md Hasen Ali"  # Replace with actual nickname
 
     checker = OnlineStatusChecker(account_path=ACCOUNT_PATH, nickname=NICKNAME)
-    is_online = checker.check_online_status()
+    result = checker.check_online_status()
 
-    print(f"{NICKNAME} is online {'Yes' if is_online else 'No'}")
+    print(f"{NICKNAME} is online {'Yes' if result else 'No'}")

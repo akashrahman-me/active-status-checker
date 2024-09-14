@@ -2,7 +2,6 @@ from dotenv import load_dotenv
 from lib.TimeoutRunner import TimeoutRunner
 from lib.OnlineStatusChecker import OnlineStatusChecker
 from utils.notify import notify
-import time
 import os
 
 load_dotenv()
@@ -19,24 +18,10 @@ def alert_timeout():
 def checker_func():
     checker = OnlineStatusChecker(account_path=ACCOUNT_PATH, nickname=NICKNAME)
     result = checker.check_online_status()
-    time.sleep(30)
     return result
 
 if __name__ == '__main__':
     timer = TimeoutRunner()
-
-    while True:
-        status = None
-        try:
-            status = timer.run_with_timeout(checker_func, 60, alert_timeout)
-
-        except Exception as err:
-            print(err)
-            status = None
-
-        if status:
-            time.sleep(60 * 60)
-        else:
-            time.sleep(60 * 5)
+    timer.run_with_timeout(checker_func, 60, alert_timeout)
 
 

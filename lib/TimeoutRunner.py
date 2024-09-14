@@ -29,23 +29,20 @@ class TimeoutRunner:
 
         return self.result[0]  # Return the result if successful
 
+# Define a function that takes some time to execute
+def long_running_functionx():
+    return "Completed successfully"
+
+
+# Define a fallback function to run if the timeout occurs
+def fallback_function():
+    print("Fallback function executed.")
 
 if __name__ == '__main__':
-    # Define a function that takes some time to execute
-    def long_running_function():
-        time.sleep(5)  # Simulate a long-running task
-        return "Completed successfully"
-
-
-    # Define a fallback function to run if the timeout occurs
-    def fallback_function():
-        print("Fallback function executed.")
-
-
     # Create an instance of TimeoutRunner
     runner = TimeoutRunner()
 
     # Run the function with a timeout of 2 seconds
-    result = runner.run_with_timeout(long_running_function, timeout=2, fallback=fallback_function)
+    result = runner.run_with_timeout(long_running_functionx, 2, fallback_function)
 
     print("Result:", result)
